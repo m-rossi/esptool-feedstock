@@ -1,5 +1,5 @@
 {% set name = "esptool" %}
-{% set version = "4.9.0" %}
+{% set version = "4.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,16 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f636b4552f3873cdf94cfaf2d5c37f5407f1f33df73643efee513867310b6a8e
+  sha256: e2e8f4faa4016198f573ce346ee2a8bb817f71f15065d1b7b860f3f4899e3c1e
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
-    - esptool.py = esptool:_main      # [win]
-    - espsecure.py = espsecure:_main  # [win]
-    - espefuse.py = espefuse:_main    # [win]
+    - esptool.py = esptool.__init__:_main                       # [win]
+    - espsecure.py = espsecure.__init__:_main                   # [win]
+    - espefuse.py = espefuse.__init__:_main                     # [win]
+    - esp_rfc2217_server.py = esp_rfc2217_server.__init__:main  # [win]
 
 requirements:
   build:
